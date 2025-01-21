@@ -1,0 +1,9 @@
+type: object
+description: Buzz login credentials for the user initiating the session
+properties:
+  email:
+    $ref: .\email.yaml
+  password:
+    $ref: .\password.yaml
+  passphrase:
+    $ref: .\passphrase.yaml

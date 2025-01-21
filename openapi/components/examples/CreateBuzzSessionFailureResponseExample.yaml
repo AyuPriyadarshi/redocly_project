@@ -1,0 +1,5 @@
+summary: Buzz Session Failure Response
+value:
+  status: FAILED
+  reason: More details about the failure
+  details: {}

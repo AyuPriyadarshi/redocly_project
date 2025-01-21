@@ -1,0 +1,6 @@
+summary: Buzz Session Successful Response
+value:
+  status: SUCCESS
+  reason: ''
+  details:
+    buzzSessionUrl: https://buzz.skyscape.com/sessions/wqrtyqr

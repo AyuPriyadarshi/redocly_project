@@ -1,0 +1,13 @@
+type: object
+description: Details of the other party (e.g. patient) participating in the session
+properties:
+  id:
+    $ref: .\id.yaml
+  firstName:
+    $ref: .\firstName.yaml
+  lastName:
+    $ref: .\lastName.yaml
+  email:
+    $ref: .\email.yaml
+  contactNumber:
+    $ref: .\contactNumber.yaml

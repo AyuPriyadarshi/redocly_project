@@ -1,0 +1,14 @@
+summary: Buzz Session
+value:
+  buzzOrgId: dad4bce8-f5cb-4078-a211-995864315e39
+  sessionUser:
+    email: user@aoc.com
+    password: '*********'
+    passphrase: '*********'
+  participant:
+    id: 6581-9876
+    firstName: Jon
+    lastName: Doe
+    email: jon@aoc.com
+    contactNumber: 9833-200-290
+  action: BuzzGroup

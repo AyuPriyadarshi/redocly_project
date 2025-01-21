@@ -1,0 +1,15 @@
+description: Request payload for creating new session.
+properties:
+  buzzOrgId:
+    $ref: .\buzzOrgId.yaml
+  sessionUser:
+    $ref: .\sessionUser.yaml
+  participant:
+    $ref: .\participant.yaml
+  action:
+    $ref: .\action.yaml
+required:
+  - buzzOrgId
+  - sessionUser
+  - participant
+  - action

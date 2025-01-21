@@ -1,0 +1,13 @@
+description: Information about a special event.
+type: object
+properties:
+  status:
+    $ref: .\status.yaml
+  reason:
+    $ref: .\reason.yaml
+  details:
+    $ref: .\details.yaml
+required:
+  - status
+  - reason
+  - details

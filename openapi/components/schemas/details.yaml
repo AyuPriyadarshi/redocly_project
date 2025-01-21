@@ -1,0 +1,7 @@
+type: object
+description: >-
+  If the request is successful, it will include the JSON containing the URL of
+  the app session to launch the session.
+properties:
+  buzzSessionUrl:
+    $ref: .\buzzSessionUrl.yaml

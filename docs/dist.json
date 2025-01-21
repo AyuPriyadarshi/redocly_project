@@ -1,0 +1,275 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Buzz API",
+    "description": "Get the current weather, daily forecast for 16 days, and a three-hour-interval forecast for 5 days for your city. Helpful stats, graphics, and this day in history charts are available for your reference. Interactive maps show precipitation, clouds, pressure, wind around your location stations. Data is available in JSON, XML, or HTML format. **Note**: This sample Swagger file covers the `current` endpoint only from the OpenWeatherMap API. <br/><br/> **Note**: All parameters are optional, but you must select at least one parameter. Calling the API by city ID (using the `id` parameter) will provide the most precise location results.",
+    "version": "2.5",
+    "termsOfService": "https://openweathermap.org/terms",
+    "contact": {
+      "name": "OpenWeatherMap API",
+      "url": "https://openweathermap.org/api",
+      "email": "some_email@gmail.com"
+    },
+    "license": {
+      "name": "CC Attribution-ShareAlike 4.0 (CC BY-SA 4.0)",
+      "url": "https://openweathermap.org/price"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://buzz.skyscape.com/api/v1.1"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Current Weather Data",
+      "description": "Get current weather details"
+    }
+  ],
+  "externalDocs": {
+    "description": "API Documentation",
+    "url": "https://openweathermap.org/api"
+  },
+  "paths": {
+    "/sessions": {
+      "post": {
+        "security": [],
+        "tags": [
+          "Create Session"
+        ],
+        "summary": "Create a Buzz Session",
+        "description": "Create a Buzz Session",
+        "operationId": "CreateBuzzSession",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBuzzSessionRequest"
+              },
+              "examples": {
+                "default_example": {
+                  "$ref": "#/components/examples/CreateBuzzSessionRequestExample"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBuzzSessionResponse"
+                },
+                "examples": {
+                  "default_example": {
+                    "$ref": "#/components/examples/CreateBuzzSessionResponseExample"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "app_id": {
+        "type": "apiKey",
+        "description": "API key to authorize requests. (If you don't have an API key, get one at https://openweathermap.org/. See https://idratherbewriting.com/learnapidoc/docapis_get_auth_keys.html for details.)",
+        "name": "appid",
+        "in": "query"
+      }
+    },
+    "schemas": {
+      "buzzOrgId": {
+        "type": "string",
+        "description": "Buzz Organization Id",
+        "example": "a176oc-8918199"
+      },
+      "email": {
+        "type": "string",
+        "description": "possible values for this field are BuzzGroup or BuzzLink",
+        "example": "BuzzGroup"
+      },
+      "password": {
+        "type": "string",
+        "description": "possible values for this field are BuzzGroup or BuzzLink",
+        "example": "BuzzGroup"
+      },
+      "passphrase": {
+        "type": "string",
+        "description": "possible values for this field are BuzzGroup or BuzzLink",
+        "example": "BuzzGroup"
+      },
+      "sessionUser": {
+        "type": "object",
+        "description": "Buzz login credentials for the user initiating the session",
+        "properties": {
+          "email": {
+            "$ref": "#/components/schemas/email"
+          },
+          "password": {
+            "$ref": "#/components/schemas/password"
+          },
+          "passphrase": {
+            "$ref": "#/components/schemas/passphrase"
+          }
+        }
+      },
+      "id": {
+        "type": "string",
+        "description": "possible values for this field are BuzzGroup or BuzzLink",
+        "example": "BuzzGroup"
+      },
+      "firstName": {
+        "type": "string",
+        "description": "possible values for this field are BuzzGroup or BuzzLink",
+        "example": "BuzzGroup"
+      },
+      "lastName": {
+        "type": "string",
+        "description": "possible values for this field are BuzzGroup or BuzzLink",
+        "example": "BuzzGroup"
+      },
+      "contactNumber": {
+        "type": "string",
+        "description": "possible values for this field are BuzzGroup or BuzzLink",
+        "example": "BuzzGroup"
+      },
+      "participant": {
+        "type": "object",
+        "description": "Details of the other party (e.g. patient) participating in the session",
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/id"
+          },
+          "firstName": {
+            "$ref": "#/components/schemas/firstName"
+          },
+          "lastName": {
+            "$ref": "#/components/schemas/lastName"
+          },
+          "email": {
+            "$ref": "#/components/schemas/email"
+          },
+          "contactNumber": {
+            "$ref": "#/components/schemas/contactNumber"
+          }
+        }
+      },
+      "action": {
+        "type": "string",
+        "description": "possible values for this field are BuzzGroup or BuzzLink",
+        "example": "BuzzGroup"
+      },
+      "CreateBuzzSessionRequest": {
+        "description": "Request payload for creating new session.",
+        "properties": {
+          "buzzOrgId": {
+            "$ref": "#/components/schemas/buzzOrgId"
+          },
+          "sessionUser": {
+            "$ref": "#/components/schemas/sessionUser"
+          },
+          "participant": {
+            "$ref": "#/components/schemas/participant"
+          },
+          "action": {
+            "$ref": "#/components/schemas/action"
+          }
+        },
+        "required": [
+          "buzzOrgId",
+          "sessionUser",
+          "participant",
+          "action"
+        ]
+      },
+      "status": {
+        "type": "string",
+        "description": "Status of request. The possible values are SUCCESS, FAILED",
+        "example": "SUCCESS"
+      },
+      "reason": {
+        "type": "string",
+        "description": "reason for failure",
+        "example": "Connection Issue"
+      },
+      "buzzSessionUrl": {
+        "type": "string",
+        "description": "URL with sessionId to launch Buzz session.",
+        "example": "https://buzz.skyscape.com/sessions/wqrtyqr"
+      },
+      "details": {
+        "type": "object",
+        "description": "If the request is successful, it will include the JSON containing the URL of the app session to launch the session.",
+        "properties": {
+          "buzzSessionUrl": {
+            "$ref": "#/components/schemas/buzzSessionUrl"
+          }
+        }
+      },
+      "CreateBuzzSessionResponse": {
+        "description": "Information about a special event.",
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/status"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/reason"
+          },
+          "details": {
+            "$ref": "#/components/schemas/details"
+          }
+        },
+        "required": [
+          "status",
+          "reason",
+          "details"
+        ]
+      }
+    },
+    "examples": {
+      "CreateBuzzSessionRequestExample": {
+        "summary": "Buzz Session",
+        "value": {
+          "buzzOrgId": "dad4bce8-f5cb-4078-a211-995864315e39",
+          "sessionUser": {
+            "email": "user@aoc.com",
+            "password": "*********",
+            "passphrase": "*********"
+          },
+          "participant": {
+            "id": "6581-9876",
+            "firstName": "Jon",
+            "lastName": "Doe",
+            "email": "jon@aoc.com",
+            "contactNumber": "9833-200-290"
+          },
+          "action": "BuzzGroup"
+        }
+      },
+      "CreateBuzzSessionResponseExample": {
+        "summary": "Buzz Session Successful Response",
+        "value": {
+          "status": "SUCCESS",
+          "reason": "",
+          "details": {
+            "buzzSessionUrl": "https://buzz.skyscape.com/sessions/wqrtyqr"
+          }
+        }
+      }
+    }
+  }
+}

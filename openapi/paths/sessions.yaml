@@ -1,0 +1,30 @@
+post:
+  security: []
+  tags:
+    - Create Session
+  summary: Create a Buzz Session
+  description: Create a Buzz Session
+  operationId: CreateBuzzSession
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ..\components\schemas\CreateBuzzSessionRequest.yaml
+        examples:
+          default_example:
+            $ref: ..\components\examples\CreateBuzzSessionRequestExample.yaml
+  responses:
+    '200':
+      description: success
+      content:
+        application/json:
+          schema:
+            $ref: ..\components\schemas\CreateBuzzSessionResponse.yaml
+          examples:
+            default_example:
+              $ref: ..\components\examples\CreateBuzzSessionResponseExample.yaml
+    '400':
+      description: Bad request
+    '404':
+      description: Not found
