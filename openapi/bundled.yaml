@@ -1,33 +1,44 @@
 openapi: 3.0.2
 info:
   title: Buzz API
-  description: 'Get the current weather, daily forecast for 16 days, and a three-hour-interval forecast for 5 days for your city. Helpful stats, graphics, and this day in history charts are available for your reference. Interactive maps show precipitation, clouds, pressure, wind around your location stations. Data is available in JSON, XML, or HTML format. **Note**: This sample Swagger file covers the `current` endpoint only from the OpenWeatherMap API. <br/><br/> **Note**: All parameters are optional, but you must select at least one parameter. Calling the API by city ID (using the `id` parameter) will provide the most precise location results.'
-  version: '2.5'
-  termsOfService: https://openweathermap.org/terms
-  contact:
-    name: OpenWeatherMap API
-    url: https://openweathermap.org/api
-    email: some_email@gmail.com
+  description: The Easy HIPAA-Secure Communication & Collaboration App For All Who Care♥
+  version: '1.1'
   license:
-    name: CC Attribution-ShareAlike 4.0 (CC BY-SA 4.0)
-    url: https://openweathermap.org/price
+    name: Mobiuso
+    url: https://opensource.org/license/mit/
 servers:
   - url: https://buzz.skyscape.com/api/v1.1
 tags:
-  - name: Current Weather Data
-    description: Get current weather details
-externalDocs:
-  description: API Documentation
-  url: https://openweathermap.org/api
+  - name: Buzz APIs
+    description: APIs for Buzz App
 paths:
   /sessions:
     post:
       security: []
       tags:
-        - Create Session
+        - Session
       summary: Create a Buzz Session
       description: Create a Buzz Session
       operationId: CreateBuzzSession
+      parameters:
+        - name: x-api-key
+          in: header
+          description: API Key for the client. Will be shared by Skyscape.
+          required: true
+          schema:
+            type: string
+        - name: x-client-id
+          in: header
+          description: Unique ID assigned to a client. Will be shared by Skyscape.
+          required: true
+          schema:
+            type: string
+        - name: x-secret
+          in: header
+          description: API Secret for the client. Will be shared by Skyscape.
+          required: true
+          schema:
+            type: string
       requestBody:
         required: true
         content:
@@ -99,36 +110,36 @@ components:
           $ref: '#/components/schemas/contactNumber'
     action:
       type: string
-      description: possible values for this field are BuzzGroup or BuzzLink
+      description: Possible values for this field are BuzzGroup or BuzzLink
       example: BuzzGroup
     email:
       type: string
-      description: possible values for this field are BuzzGroup or BuzzLink
-      example: BuzzGroup
+      description: Email Id of the person
+      example: user@aoc.com
     password:
       type: string
-      description: possible values for this field are BuzzGroup or BuzzLink
-      example: BuzzGroup
+      description: User's Buzz Password
+      example: pass123@ac
     passphrase:
       type: string
-      description: possible values for this field are BuzzGroup or BuzzLink
-      example: BuzzGroup
+      description: User's Buzz Password
+      example: passphrase123@ac
     id:
       type: string
-      description: possible values for this field are BuzzGroup or BuzzLink
+      description: Patient Id used by organization to identify the patient
       example: BuzzGroup
     firstName:
       type: string
-      description: possible values for this field are BuzzGroup or BuzzLink
+      description: Patient's first name
       example: BuzzGroup
     lastName:
       type: string
-      description: possible values for this field are BuzzGroup or BuzzLink
+      description: Patient's last name
       example: BuzzGroup
     contactNumber:
       type: string
-      description: possible values for this field are BuzzGroup or BuzzLink
-      example: BuzzGroup
+      description: Text enabled contact number for the patient
+      example: '9847389432'
     CreateBuzzSessionResponse:
       description: Information about a special event.
       type: object
@@ -168,7 +179,7 @@ components:
         buzzOrgId: dad4bce8-f5cb-4078-a211-995864315e39
         sessionUser:
           email: user@aoc.com
-          password: '*********'
+          password: '**********'
           passphrase: '*********'
         participant:
           id: 6581-9876
@@ -190,9 +201,3 @@ components:
         status: FAILED
         reason: More details about the failure
         details: {}
-  securitySchemes:
-    app_id:
-      type: apiKey
-      description: API key to authorize requests. (If you don't have an API key, get one at https://openweathermap.org/. See https://idratherbewriting.com/learnapidoc/docapis_get_auth_keys.html for details.)
-      name: appid
-      in: query

@@ -1,10 +1,29 @@
 post:
   security: []
   tags:
-    - Create Session
+    - Session
   summary: Create a Buzz Session
   description: Create a Buzz Session
   operationId: CreateBuzzSession
+  parameters:
+    - name: x-api-key
+      in: header
+      description: API Key for the client. Will be shared by Skyscape.
+      required: true
+      schema:
+        type: string
+    - name: x-client-id
+      in: header
+      description: Unique ID assigned to a client. Will be shared by Skyscape.
+      required: true
+      schema:
+        type: string
+    - name: x-secret
+      in: header
+      description: API Secret for the client. Will be shared by Skyscape.
+      required: true
+      schema:
+        type: string
   requestBody:
     required: true
     content:

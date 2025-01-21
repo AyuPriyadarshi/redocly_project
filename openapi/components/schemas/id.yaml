@@ -1,3 +1,3 @@
 type: string
-description: possible values for this field are BuzzGroup or BuzzLink
+description: Patient Id used by organization to identify the patient
 example: BuzzGroup
