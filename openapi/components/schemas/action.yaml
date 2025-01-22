@@ -1,3 +1,15 @@
 type: string
 description: Possible values for this field are BuzzGroup or BuzzLink
-example: BuzzGroup
+oneOf:
+  - type: string
+    enum:
+      - BuzzGroup
+    description: >-
+      finds the care/coordination group for the patient, creates one by cloning
+      if not present and opens the conversation window.
+  - type: string
+    enum:
+      - BuzzLink
+    description: >-
+      finds the BuzzLink user associated with the patient, creates one if not
+      present and opens the conversation window.

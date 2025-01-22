@@ -1,24 +1,25 @@
 post:
   security: []
-  tags:
-    - Session
   summary: Create a Buzz Session
-  description: Create a Buzz Session
+  description: >-
+    To create a Buzz session API expects necessary context to be passed in the
+    request body. The session URL in the success reponse then can be used to
+    launch the Buzz Session.
   operationId: CreateBuzzSession
   parameters:
-    - name: x-api-key
+    - name: API-Key
       in: header
       description: API Key for the client. Will be shared by Skyscape.
       required: true
       schema:
         type: string
-    - name: x-client-id
+    - name: Client-Id
       in: header
       description: Unique ID assigned to a client. Will be shared by Skyscape.
       required: true
       schema:
         type: string
-    - name: x-secret
+    - name: Secret
       in: header
       description: API Secret for the client. Will be shared by Skyscape.
       required: true
@@ -35,14 +36,17 @@ post:
             $ref: ..\components\examples\CreateBuzzSessionRequestExample.yaml
   responses:
     '200':
-      description: success
+      description: Success
       content:
         application/json:
           schema:
             $ref: ..\components\schemas\CreateBuzzSessionResponse.yaml
           examples:
-            default_example:
+            successExample:
               $ref: ..\components\examples\CreateBuzzSessionResponseExample.yaml
+            failureExample:
+              $ref: >-
+                ..\components\examples\CreateBuzzSessionFailureResponseExample.yaml
     '400':
       description: Bad request
     '404':

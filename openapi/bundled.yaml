@@ -15,25 +15,23 @@ paths:
   /sessions:
     post:
       security: []
-      tags:
-        - Session
       summary: Create a Buzz Session
-      description: Create a Buzz Session
+      description: To create a Buzz session API expects necessary context to be passed in the request body. The session URL in the success reponse then can be used to launch the Buzz Session.
       operationId: CreateBuzzSession
       parameters:
-        - name: x-api-key
+        - name: API-Key
           in: header
           description: API Key for the client. Will be shared by Skyscape.
           required: true
           schema:
             type: string
-        - name: x-client-id
+        - name: Client-Id
           in: header
           description: Unique ID assigned to a client. Will be shared by Skyscape.
           required: true
           schema:
             type: string
-        - name: x-secret
+        - name: Secret
           in: header
           description: API Secret for the client. Will be shared by Skyscape.
           required: true
@@ -50,14 +48,16 @@ paths:
                 $ref: '#/components/examples/CreateBuzzSessionRequestExample'
       responses:
         '200':
-          description: success
+          description: Success
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateBuzzSessionResponse'
               examples:
-                default_example:
+                successExample:
                   $ref: '#/components/examples/CreateBuzzSessionResponseExample'
+                failureExample:
+                  $ref: '#/components/examples/CreateBuzzSessionFailureResponseExample'
         '400':
           description: Bad request
         '404':
@@ -111,7 +111,15 @@ components:
     action:
       type: string
       description: Possible values for this field are BuzzGroup or BuzzLink
-      example: BuzzGroup
+      oneOf:
+        - type: string
+          enum:
+            - BuzzGroup
+          description: finds the care/coordination group for the patient, creates one by cloning if not present and opens the conversation window.
+        - type: string
+          enum:
+            - BuzzLink
+          description: finds the BuzzLink user associated with the patient, creates one if not present and opens the conversation window.
     email:
       type: string
       description: Email Id of the person
@@ -122,7 +130,7 @@ components:
       example: pass123@ac
     passphrase:
       type: string
-      description: User's Buzz Password
+      description: User's Buzz Passphrase
       example: passphrase123@ac
     id:
       type: string
@@ -160,7 +168,7 @@ components:
       example: SUCCESS
     reason:
       type: string
-      description: reason for failure
+      description: Reason for failure
       example: Connection Issue
     details:
       type: object
